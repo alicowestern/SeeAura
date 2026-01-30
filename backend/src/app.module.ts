@@ -23,10 +23,16 @@ import { LogsModule } from './logs/logs.module';
       }),
       inject: [ConfigService],
     }),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'uploads'),
-      serveRoot: '/uploads',
-    }),
+    ServeStaticModule.forRoot(
+      {
+        rootPath: join(__dirname, '..', '..', 'frontend', 'dist'),
+        exclude: ['/api/(.*)', '/uploads/(.*)'],
+      },
+      {
+        rootPath: join(__dirname, '..', 'uploads'),
+        serveRoot: '/uploads',
+      },
+    ),
     TemplatesModule,
     InquiriesModule,
     AuthModule,
@@ -36,4 +42,4 @@ import { LogsModule } from './logs/logs.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

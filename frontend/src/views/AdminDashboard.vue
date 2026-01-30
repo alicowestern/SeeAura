@@ -345,8 +345,7 @@ const handleAddTemplate = async () => {
     if (selectedFiles.value.length > 0) {
       const uploadRes = await uploadService.uploadImages(selectedFiles.value)
       // Base URL should be included if serving from distinct port, but here paths are relative
-      const backendUrl = 'http://localhost:3000'
-      const uploadedUrls = uploadRes.data.urls.map(url => backendUrl + url)
+      const uploadedUrls = uploadRes.data.urls
       newTemplate.value.images = [...newTemplate.value.images, ...uploadedUrls]
     }
 
